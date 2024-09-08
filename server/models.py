@@ -1,33 +1,31 @@
-import sqlalchemy as sa
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import CheckConstraint
 from sqlalchemy_serializer import SerializerMixin
-from sqlalchemy.ext.declarative import declarative_base
 
-# from sqlalchemy import Enum
+db = SQLAlchemy()
 
-# db = SQLAlchemy()
-Base = declarative_base()
-
-class StatusEnum(sa.Enum):
-    NOT_STARTED = "Not Started"
-    IN_PROGRESS = "In Progress"
-    COMPLETED = "Completed"
-
-class Goal(Base, SerializerMixin): 
+class Goal(db.Model, SerializerMixin): 
     __tablename__ = "goals"
 
-    id = sa.Column(db.Integer, primary_key=True)
-    title = sa.Column(db.String(100), nullable=False)
-    description = sa.Column(db.String(200))
-    status = sa.Column(Enum(StatusEnum), nullable=False, default=StatusEnum.NOT_STARTED)
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(200))
+    status = db.Column(db.String(50), nullable=False, default="Not Started")
+
+    __table_args__ = (
+        CheckConstraint(
+            status.in_(['Not Started', 'In Progress', 'Completed']),
+            name='check_status_valid'
+        ),
+    )
 
     def to_dict(self):
         return {
             "id": self.id,
             "title": self.title,
             "description": self.description,
-            "status": self.status.value
+            "status": self.status
         }
 
     def __repr__(self):
-        return f"<Goal {self.title} | Description: {self.description} | Status: {self.status.value}>"
+        return f"<Goal {self.title} | Description: {self.description} | Status: {self.status}>"

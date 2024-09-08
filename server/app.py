@@ -3,9 +3,10 @@ from flask import request, make_response, jsonify
 from flask_restful import Resource
 
 from config import app, db, api
-from models import Goal, StatusEnum
+from models import Goal
 
-# Views
+ALLOWED_STATUSES = ["Not Started", "In Progress", "Completed"]
+
 @app.route("/")
 def index():
     return "<h1>Goal TRKR Server</h1>"
@@ -21,6 +22,8 @@ class Goals(Resource):
     def post(self):
         try:
             data = request.get_json()
+            if "status" in data and data["status"] not in ALLOWED_STATUSES:
+                return make_response(jsonify({"error": "Invalid status value"}), 400)
             new_goal = Goal(**data)
             db.session.add(new_goal)
             db.session.commit()
@@ -44,9 +47,10 @@ class GoalById(Resource):
             try:
                 data = request.json
                 if "status" in data:
-                    data["status"] = StatusEnum[data["status"]]
-                # for attr, value in data.items():
-                #     setattr(goal, attr, value)
+                    if data["status"] not in ALLOWED_STATUSES:
+                        return make_response(jsonify({"error": "Invalid status value"}), 400)
+                for attr, value in data.items():
+                    setattr(goal, attr, value)
                 db.session.commit()
                 return make_response(jsonify(goal.to_dict()), 202)
             except Exception as e:
