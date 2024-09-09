@@ -4,19 +4,27 @@ from flask_migrate import Migrate
 from flask_restful import Api
 from flask_cors import CORS
 from sqlalchemy import MetaData
+import os
+
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+
+class Config:
+    SQLALCHEMY_DATABASE_URI = f"sqlite:///{os.path.join(BASE_DIR, 'goals.db')}"
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///goals.db"
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config.from_object(Config)
 
 metadata = MetaData(naming_convention={
     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
 })
 
-db = SQLAlchemy(metadata=metadata)
+db = SQLAlchemy(app, metadata=metadata)
 migrate = Migrate(app, db)
-db.init_app(app)
 
 api = Api(app)
 
 CORS(app)
+
+# Import models to ensure they are registered with SQLAlchemy
+from models import Goal

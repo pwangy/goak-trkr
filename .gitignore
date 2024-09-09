@@ -70,7 +70,6 @@ build/Release
 .pytest_cache
 __pycache__
 
-# database
-*.db
+
 instance
 .vscode

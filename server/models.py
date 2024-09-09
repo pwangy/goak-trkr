@@ -1,14 +1,12 @@
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import CheckConstraint
 from sqlalchemy_serializer import SerializerMixin
-
-db = SQLAlchemy()
+from config import db
 
 class Goal(db.Model, SerializerMixin): 
     __tablename__ = "goals"
 
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
+    title = db.Column(db.String(25), nullable=False)
     description = db.Column(db.String(200))
     status = db.Column(db.String(50), nullable=False, default="Not Started")
 
