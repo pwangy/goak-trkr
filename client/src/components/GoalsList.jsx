@@ -5,8 +5,8 @@ const GoalsList = ({ goals, handleUpdateGoal, handleDeleteGoal }) => {
 		<Goal
 			key={goal.id}
 			goal={goal}
-			onUpdate={handleUpdateGoal}
-			onDelete={handleDeleteGoal}
+			handleUpdateGoal={handleUpdateGoal}
+			handleDeleteGoal={handleDeleteGoal}
 		/>
 	))
 

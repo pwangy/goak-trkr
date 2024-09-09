@@ -23,8 +23,8 @@ const Trkr = () => {
 			.catch((err) => console.error('Error:', err.message))
 	}, [])
 
-	const handleDeleteGoal = (deletedGoal) => {
-		const updatedGoals = goals.filter((goal) => goal.id !== deletedGoal.id)
+	const handleDeleteGoal = (id) => {
+		const updatedGoals = goals.filter((goal) => goal.id !== id)
 		setGoals(updatedGoals)
 	}
 
@@ -39,18 +39,18 @@ const Trkr = () => {
 		setGoals(updatedGoals)
 	}
 
-	const handleAdd = (newGoal) => {
+	const handleAddGoal = (newGoal) => {
 		const updatedGoals = [...goals, newGoal]
 		setGoals(updatedGoals)
 	}
 
 	return (
 		<>
-			<Form onAdd={handleAdd} />
+			<Form onAdd={handleAddGoal} />
 			<GoalsList
 				goals={goals}
-				onUpdate={handleUpdateGoal}
-				onDelete={handleDeleteGoal}
+				handleUpdateGoal={handleUpdateGoal}
+				handleDeleteGoal={handleDeleteGoal}
 			/>
 		</>
 	)
