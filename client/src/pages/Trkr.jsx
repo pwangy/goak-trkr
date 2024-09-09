@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import GoalsList from '../components/GoalsList'
 import Form from '../components/Form'
+import Filter from '../components/Filter'
 
 const Trkr = () => {
 	const [goals, setGoals] = useState([])
+    const [filteredGoals, setFilteredGoals] = useState([])
 
 	useEffect(() => {
 		fetch('/goals')
@@ -18,6 +20,7 @@ const Trkr = () => {
 			})
 			.then((data) => {
 				setGoals(data)
+                setFilteredGoals(data)
 				console.log('Response received:', data)
 			})
 			.catch((err) => console.error('Error:', err.message))
@@ -26,6 +29,7 @@ const Trkr = () => {
 	const handleDeleteGoal = (id) => {
 		const updatedGoals = goals.filter((goal) => goal.id !== id)
 		setGoals(updatedGoals)
+        setFilteredGoals(updatedGoals)
 	}
 
 	const handleUpdateGoal = (updatedGoal) => {
@@ -37,18 +41,35 @@ const Trkr = () => {
 			}
 		})
 		setGoals(updatedGoals)
+        setFilteredGoals(updatedGoals)
 	}
 
 	const handleAddGoal = (newGoal) => {
 		const updatedGoals = [...goals, newGoal]
 		setGoals(updatedGoals)
+        setFilteredGoals(updatedGoals)
+    }
+
+    const handleFilterChange = (filters) => {
+        if (filters.all) {
+            setFilteredGoals(goals)
+        } else {
+            const filtered = goals.filter((goal) => {
+                if (filters.notStarted && goal.status === 'Not Started') return true
+                if (filters.inProgress && goal.status === 'In Progress') return true
+                if (filters.completed && goal.status === 'Completed') return true
+                return false
+            })
+            setFilteredGoals(filtered)
+        }
 	}
 
 	return (
 		<>
 			<Form onAdd={handleAddGoal} />
+            <Filter onFilterChange={handleFilterChange} />
 			<GoalsList
-				goals={goals}
+				goals={filteredGoals}
 				handleUpdateGoal={handleUpdateGoal}
 				handleDeleteGoal={handleDeleteGoal}
 			/>

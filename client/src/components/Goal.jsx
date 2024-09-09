@@ -11,7 +11,7 @@ const Goal = ({ goal, handleUpdateGoal, handleDeleteGoal }) => {
 			.then((res) => {
 				if (res.status === 204) {
 					handleDeleteGoal(id)
-					console.log('Goal deleted')
+					alert('Goal deleted')
 				} else {
 					return res.json().then((errorObj) => {
 						throw new Error(errorObj.error)
@@ -40,7 +40,6 @@ const Goal = ({ goal, handleUpdateGoal, handleDeleteGoal }) => {
             .then((res) => {
                 if (res.status === 202) {
                     alert('Goal Updated')
-                    console.log('Goal updated')
                 } else {
                     return res.json().then((errorObj) => {
                         throw new Error(errorObj.error)
@@ -53,13 +52,27 @@ const Goal = ({ goal, handleUpdateGoal, handleDeleteGoal }) => {
             })
     }
 
+    const getStatusColor = (status) => {
+        switch (status) {
+            case 'Not Started':
+                return { background: 'red' }
+            case 'In Progress':
+                return { background: 'orange' }
+            case 'Completed':
+                return { background: 'green' }
+            default:
+                return {}
+        }
+    }
+
 	return (
 		<li>
-			<span>{status}</span> |
+			{/* <span>{status}</span> | */}
 			<select
 				name='status-picker'
 				value={goalStatus}
-				onChange={handleStatusChange}>
+				onChange={handleStatusChange}
+                style={getStatusColor(goalStatus)}>
 				<option value='Not Started'>Not Started</option>
 				<option value='In Progress'>In Progress</option>
 				<option value='Completed'>Completed</option>
