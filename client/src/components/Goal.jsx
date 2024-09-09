@@ -11,7 +11,6 @@ const Goal = ({ goal, handleUpdateGoal, handleDeleteGoal }) => {
 			.then((res) => {
 				if (res.status === 204) {
 					handleDeleteGoal(id)
-                    alert('Goal Deleted')
 					console.log('Goal deleted')
 				} else {
 					return res.json().then((errorObj) => {
@@ -30,6 +29,28 @@ const Goal = ({ goal, handleUpdateGoal, handleDeleteGoal }) => {
         setGoalStatus(newStatus)
         const updatedGoal = { ...goal, status: newStatus }
         handleUpdateGoal(updatedGoal)
+
+        fetch(`/goals/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedGoal)
+        })
+            .then((res) => {
+                if (res.status === 202) {
+                    alert('Goal Updated')
+                    console.log('Goal updated')
+                } else {
+                    return res.json().then((errorObj) => {
+                        throw new Error(errorObj.error)
+                    })
+                }
+            })
+            .catch((err) => {
+                console.error(err)
+                alert('Failed to update goal')
+            })
     }
 
 	return (
