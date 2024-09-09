@@ -1,23 +1,19 @@
 import { useState } from 'react'
+import Header from './components/Header'
+import Trkr from './pages/Trkr'
 
 const App = () => {
-	const [count, setCount] = useState(0)
+	const [darkMode, setDarkMode] = useState(true)
+
+	function handleDarkModeClick() {
+		setDarkMode(darkMode => !darkMode)
+	}
 
 	return (
-		<>
-			<div>
-				<h1>Hi! I&apos;m a Goal Tracking App</h1>
-
-				<div className='card'>
-					<button onClick={() => setCount((count) => count + 1)}>
-						count is {count}
-					</button>
-					<p>
-						Edit <code>src/App.jsx</code> and save
-					</p>
-				</div>
-			</div>
-		</>
+		<main className={'App ' + (darkMode ? 'light' : 'dark')}>
+			<Header darkMode={darkMode} onDarkModeClick={handleDarkModeClick} />
+			<Trkr />
+		</main>
 	)
 }
 
