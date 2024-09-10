@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from 'react'
 
 const Form = ({ onAdd }) => {
@@ -40,21 +39,29 @@ const Form = ({ onAdd }) => {
 		}
 
 		fetch('/goals', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify(goalData)
-		})
-			.then((res) => res.json())
-			.then((newGoal) => {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(goalData)
+        })
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error('Failed to add goal')
+                }
+                return res.json()
+            })
+            .then((newGoal) => {
                 onAdd(newGoal)
                 setTitle('')
                 setDescription('')
-				setErrors({})
+                setErrors({})
             })
-            .catch((err) => console.error(err.message))
-	}
+            .catch((err) => {
+                console.error(err.message)
+                setErrors((prevErrors) => ({ ...prevErrors, submit: err.message }))
+            })
+    }
 
 	return (
 		<div className='new-goal-form'>
@@ -84,6 +91,7 @@ const Form = ({ onAdd }) => {
 					/>
 					{errors.description && <p className='error'>{errors.description}</p>}
 				</div>
+				{errors.submit && <p className='error'>{errors.submit}</p>}
 				<button type='submit'>Add Goal</button>
 			</form>
 		</div>
