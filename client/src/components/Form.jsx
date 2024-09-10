@@ -6,29 +6,29 @@ const Form = ({ onAdd }) => {
 	const [description, setDescription] = useState('')
 	const [errors, setErrors] = useState({})
 
-    const validate = (name, value) => {
-        const errors = {}
-        if (name === 'title' && value.length > 25) {
-            errors.title = 'Title must be 25 characters or less'
-        }
-        if (name === 'description' && value.length > 200) {
-            errors.description = 'Description must be 200 characters or less'
-        }
-        return errors
-    }
+	const validate = (name, value) => {
+		const newErrors = {}
+		if (name === 'title' && value.length >= 25) {
+			newErrors.title = '25 characters or less'
+		}
+		if (name === 'description' && value.length >= 200) {
+			newErrors.description = '200 characters or less'
+		}
+		return newErrors
+	}
 
 	const handleTitleChange = (e) => {
-        const { value } = e.target
-        setTitle(value)
-        const validationErrors = validate('title', value)
+		const { value } = e.target
+		setTitle(value)
+		const validationErrors = validate('title', value)
 		setErrors((prevErrors) => ({ ...prevErrors, title: validationErrors.title }))
-    }
-
-    const handleDescriptionChange = (e) => {
-        const { value } = e.target
-        setDescription(value)
-        const validationErrors = validate('description', value)
-        setErrors((prevErrors) => ({ ...prevErrors, description: validationErrors.description }))
+	}
+	
+	const handleDescriptionChange = (e) => {
+		const { value } = e.target
+		setDescription(value)
+		const validationErrors = validate('description', value)
+		setErrors((prevErrors) => ({ ...prevErrors, description: validationErrors.description }))
     }
 
 	const handleSubmit = (e) => {
