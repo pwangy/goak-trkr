@@ -42,6 +42,7 @@ input {
 cursor: pointer;
 }
 button {
+  max-height: 20px;
   padding: 4px 10px;
   font-size: 10px;
   font-weight: 700;
@@ -106,13 +107,11 @@ header button:hover {
 /* Form */
 .new-goal-form {
   border-top: solid .3px var(--background-light);
-  /* border-bottom: solid .3px var(--background-light); */
   border-radius: 0;
 }
 .new-goal-form div {
   position: relative;
   min-height: 2.9em;
-  /* background: cyan; */
 }
 form {
   margin: 25px;
@@ -130,7 +129,6 @@ form input {
 form button {
   margin-left: 6px;
   background-color: var(--lt-yellow);
-  max-height: 20px;
 }
 form button:hover {
   background-color: var(--yellow);
@@ -144,7 +142,6 @@ form button:hover {
   position: absolute;
   bottom: 0;
   left: 0;
-
 }
 
 /* Filters */

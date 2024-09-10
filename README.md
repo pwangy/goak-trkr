@@ -1,8 +1,28 @@
-# THIS README NEEDS TO BE WRITTEN
-## What is this?
-Something about what this is
+# Goal TRKR
+A simple goal tracking app.
+
+Backend built with Flask & SQLAlchemy in python. 
+Frontend built in React with Javascript and Vite
+
+## Features
+Users can:
+- Add goals to the tracker. Each goal has a title and an optional description
+- View goals
+- Filter goals based on Status types
+- Update the status of any goal
+- Delete Goals
+- Toggle between dark and light mode
+
+Other:
+- Data Quality: 
+  - Form validation on the Frontend / field constaints on the Backend
+  - Drop down picker for Status ensures only 3 settings are ever used
+- Readability: 
+  - Goal Status types are color coded in order to quickly get a sense overall goal progress
+  -  Titles are always visible, while hovering over a Goal will reveal the Description. A simple layout helps to make the data easily understantable without losing detail.
 
 ## Getting up and running
+If you'd like to get TRKR up and running locally, start by cloning this repo.
 
 To download the dependencies for the frontend and backend, run:
 
@@ -19,15 +39,12 @@ running:
 python server/app.py
 ```
 
-You can run your React app on [`localhost:4000`](http://localhost:4000) by
+You can run your React app on [`localhost:5173`](http://localhost:5173) by
 running:
 
 ```sh
-npm start --prefix client
+npm run dev --prefix client
 ```
-
-## Core Deliverables
-
 
 
 ### Models
@@ -40,10 +57,6 @@ flask db migrate
 flask db upgrade head
 ```
 
-
-Update `server/models.py` to establish the model relationships. Since a
-`RestaurantPizza` belongs to a `Restaurant` and a `Pizza`, configure the model
-to cascade deletes.
 
 Set serialization rules to limit the recursion depth.
 
