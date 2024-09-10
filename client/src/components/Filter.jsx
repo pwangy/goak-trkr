@@ -29,7 +29,7 @@ const Filter = ({ onFilterChange }) => {
     }
 
     return (
-        <>
+        <section>
             <p>Show:</p>
             <label>
                 <input
@@ -67,7 +67,7 @@ const Filter = ({ onFilterChange }) => {
                 />
                 Completed
             </label>
-        </>
+        </section>
     )
 }
 

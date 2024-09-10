@@ -4,12 +4,10 @@
   font-style: normal;
   font-size: 12px;
   font-weight: 400;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; 
-
 
   --cyan: #72fcfc;
   --magenta: #e6b3e6;
@@ -17,7 +15,6 @@
   --yellow: #fffe54;
   --lt-yellow: #f0f0a8;
   --black: #121212;
-
 
   --navy: #001f3f;
   --font-color: #e5e5e5;
@@ -36,23 +33,17 @@
   border: none;
   border-radius: 3px;
 }
-
 body {
   background-color: #666a6d;
   margin: 16px;
   padding: 3px;
 }
 
-/* button,
+button,
 select,
 input {
-  border: none;
-  padding: 0.5rem;
-  border-radius: 4px;
-  font-size: 1rem;
-  background: var(--background-light);
-} */
-
+cursor: pointer;
+}
 button {
   padding: 4px 10px;
   font-size: 10px;
@@ -60,23 +51,20 @@ button {
   text-transform: uppercase;
   border: 1px solid transparent;
 }
-
 .App.dark {
   --font-color: rgb(50, 50, 50);
   --background:  #e6e0eb;
   /* --background-light: #656565; */
   transition: all 0.3s;
 }
-
 .App {
   max-width: 700px;
   padding: 16px;
   background: var(--background);
   color: var(--font-color);
   box-shadow: 4px 4px 10px rgba(33, 33, 33, 0.2);
-  /* border:  solid .3px #333; */
+  border:  solid .3px transparent;
 }
-
 
 /* Header */
 header {
@@ -136,15 +124,11 @@ form input {
   font-size: 1rem;
   font-weight: 400;
   background: var(--background-light);
-  /* height: 25px; */
 }
-
 form button {
   margin-left: 6px;
   background-color: var(--lt-yellow);
-  /* border:  solid .3px #333; */
 }
-
 form button:hover {
   background-color: var(--yellow);
   border: 1px solid var(--lt-yellow);
@@ -160,32 +144,26 @@ form button:hover {
 }
 .delete {
   background-color: var(--magenta);
-  /* border:  solid .3px #333; */
 }
 .delete:hover {
   background-color: var(--magenta-dk);
   border: 1px solid var(--magenta);
 }
-
 select {
   margin-right: 10px;
   padding: 3px 6px;
   font-size: smaller;
   font-weight: 700;
   text-transform: uppercase;
-  /* border:  solid .3px #333; */
 }
-
 li {
   list-style: none;
   border-bottom:  solid .3px #333;
   border-radius: 0;
 }
-
 .title {
   font-weight: 700;
 }
-
 .desc {
   font-size: smaller;
   display: none;
@@ -193,17 +171,3 @@ li {
 .goal-item:hover .desc {
   display: inline;
 }
-/* VITE Styles */
-/* button {
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-} */
