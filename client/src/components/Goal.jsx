@@ -89,6 +89,3 @@ const Goal = ({ goal, handleUpdateGoal, handleDeleteGoal }) => {
 }
 
 export default Goal
-
-
-// make color of status change based on value

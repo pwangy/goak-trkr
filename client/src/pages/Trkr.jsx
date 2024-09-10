@@ -10,7 +10,6 @@ const Trkr = () => {
 	useEffect(() => {
 		fetch('/goals')
 			.then((res) => {
-				console.log('Response received:', res)
 				if (!res.ok) {
 					return res.text().then((text) => {
 						throw new Error(text)
@@ -21,7 +20,6 @@ const Trkr = () => {
 			.then((data) => {
 				setGoals(data)
                 setFilteredGoals(data)
-				console.log('Response received:', data)
 			})
 			.catch((err) => console.error('Error:', err.message))
 	}, [])

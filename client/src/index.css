@@ -189,3 +189,6 @@ li {
 .goal-item:hover .desc {
   display: inline;
 }
+ul {
+  margin-bottom: 20px;
+}
