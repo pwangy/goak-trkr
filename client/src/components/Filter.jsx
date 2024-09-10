@@ -30,7 +30,7 @@ const Filter = ({ onFilterChange }) => {
 
     return (
         <section>
-            <p>Show:</p>
+            <p>Display</p>
             <label>
                 <input
                     type="checkbox"

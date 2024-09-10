@@ -90,7 +90,4 @@ const Form = ({ onAdd }) => {
 	)
 }
 
-// title = db.Column(db.String(25), nullable=False)
-// description = db.Column(db.String(200))
-
 export default Form
