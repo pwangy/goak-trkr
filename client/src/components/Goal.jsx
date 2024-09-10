@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react'
 
 const Goal = ({ goal, handleUpdateGoal, handleDeleteGoal }) => {
@@ -55,33 +56,34 @@ const Goal = ({ goal, handleUpdateGoal, handleDeleteGoal }) => {
     const getStatusColor = (status) => {
         switch (status) {
             case 'Not Started':
-                return { background: 'red' }
+                return { background: '#b294d1' }
             case 'In Progress':
-                return { background: 'orange' }
+                return { background: '#a8f0f0' }
             case 'Completed':
-                return { background: 'green' }
+                return { background: '#b3e6b3' }
             default:
                 return {}
         }
     }
 
 	return (
-		<li>
-			{/* <span>{status}</span> | */}
-			<select
-				name='status-picker'
-				value={goalStatus}
-				onChange={handleStatusChange}
-                style={getStatusColor(goalStatus)}>
-				<option value='Not Started'>Not Started</option>
-				<option value='In Progress'>In Progress</option>
-				<option value='Completed'>Completed</option>
-			</select> |
-			<span className='title'>{title}</span> |
-            <span>{description}</span> |
-			<button className='delete' onClick={handleDelete}>
-				Delete
-			</button>
+		<li className='goal-item'>
+            <div>
+                <select
+                    name='status-picker'
+                    value={goalStatus}
+                    onChange={handleStatusChange}
+                    style={getStatusColor(goalStatus)}>
+                    <option value='Not Started'>Not Started</option>
+                    <option value='In Progress'>In Progress</option>
+                    <option value='Completed'>Completed</option>
+                </select>
+                &nbsp;&nbsp;
+                <span className='title'>{title}</span>
+                <span className='desc'>| {description}</span>
+                &nbsp;&nbsp;
+            </div>
+			<button className='delete' onClick={handleDelete}>Delete</button>
 		</li>
 	)
 }

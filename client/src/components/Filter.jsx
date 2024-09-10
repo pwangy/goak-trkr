@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from 'react'
 
 const Filter = ({ onFilterChange }) => {
@@ -23,7 +24,6 @@ const Filter = ({ onFilterChange }) => {
         } else {
             newFilters.all = newFilters.notStarted && newFilters.inProgress && newFilters.completed
         }
-
         setFilters(newFilters)
         onFilterChange(newFilters)
     }

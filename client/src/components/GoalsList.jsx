@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Goal from './Goal'
 
 const GoalsList = ({ goals, handleUpdateGoal, handleDeleteGoal }) => {
