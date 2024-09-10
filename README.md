@@ -2,6 +2,7 @@
 A simple goal tracking app that allows users to set, track, and manage their goals.
 
 Backend built with Flask & SQLAlchemy in python. 
+
 Frontend built in React with Javascript and Vite
 
 <img src="https://github.com/pwangy/goal-trkr/blob/main/screencaps/view%20all.png" alt="View All" width="500" />
