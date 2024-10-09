@@ -115,7 +115,7 @@ header button:hover {
   min-height: 2.9em;
 }
 form {
-  margin: 25px;
+  margin: 25px 25px 0 25px;
   display: flex;
   justify-content: center;
   border: none;
@@ -147,13 +147,14 @@ form button:hover {
 
 /* Filters */
 section {
-  margin: 20px 0;
+  margin: 10px 0 20px 0;
   padding-bottom: 10px;
-  font-size: small;
+  font-size: smaller;
   font-weight: 700;
   text-transform: uppercase;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 16px;
   align-items: center;
 }
 section > p {
@@ -191,8 +192,11 @@ select {
 }
 li {
   list-style: none;
-  border-bottom:  solid .3px #ccc;
+  border-bottom:  solid 1px #b2b2b2;
   border-radius: 0;
+}
+li:last-child {
+  border-bottom: none;
 }
 .title {
   font-weight: 700;
@@ -210,6 +214,7 @@ ul {
 
 /* Footer */
 footer {
+  margin-top: 25px;
   font-size: xx-small;
   font-weight: 600;
   text-transform: uppercase;
